@@ -1,9 +1,28 @@
-// We remove items form local storage using removeItem('key')
-localStorage.setItem('age', '45')
-localStorage.setItem('name', 'set apart')
-localStorage.setItem('occupation', 'developer')
-localStorage.setItem('name', 'obonyo')
+const inpKey = document.getElementById('inpKey');
+const inpValue = document.getElementById('inpValue');
+const btnInsert = document.getElementById('btnInsert');
+const lsOutput = document.getElementById('lsOutput');
 
-console.log(localStorage.getItem('age'))
-console.log(localStorage.key(1))
-console.log(localStorage)
+btnInsert.onclick = function() {
+  const key = inpKey.value;
+  const value = inpValue.value
+
+  console.log(key);
+  console.log(value);
+
+  if ( key && value ) {
+    localStorage.setItem(key, value);
+    location.reload();
+  }
+}
+for ( i = 0; i < localStorage.length; i++ ) {
+  const key = localStorage.key(i);
+  const value = localStorage.getItem(key);
+
+  lsOutput.innerHTML += `${key} : ${value} <br />`;
+}
+
+lsOutput.onclick = function() {
+  const key = localStorage.key(1)
+  localStorage.removeItem(key);
+}
